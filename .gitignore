@@ -11,4 +11,5 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+.htaccess
 # End of https://www.gitignore.io/api/netbeans
