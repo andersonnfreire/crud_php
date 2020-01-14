@@ -36,7 +36,7 @@ class Funcionario {
 
     public function querySeleciona($dado) {
         try {
-            $this->idFuncionario = $this->objfc->base64($dado, 2);
+            $this->idFuncionario = $this->objFunc->base64($dado, 2);
             $cst = $this->con->conectar()->prepare("SELECT `idFuncionario`, `nome`, `email`, `data_cadastro` FROM `funcionario` WHERE `idFuncionario` = :idFunc;");
             $cst->bindParam(":idFunc", $this->idFuncionario, PDO::PARAM_INT);
             if ($cst->execute()) {
@@ -59,10 +59,10 @@ class Funcionario {
 
     public function queryInsert($dados) {
         try {
-            $this->nome = $this->objfc->tratarCaracter($dados['nome'], 1);
-            $this->email = $this->objfc->tratarCaracter($dados['email'], 1);
+            $this->nome = $this->objFunc->tratarCaracter($dados['nome'], 1);
+            $this->email = $this->objFunc->tratarCaracter($dados['email'], 1);
             $this->senha = sha1($dados['senha']);
-            $this->dataCadastro = $this->objfc->dataAtual(2);
+            $this->dataCadastro = $this->objFunc->dataAtual(2);
             $cst = $this->con->conectar()->prepare("INSERT INTO `funcionario` (`nome`, `email`, `senha`, `data_cadastro`) VALUES (:nome, :email, :senha, :data);");
             $cst->bindParam(":nome", $this->nome, PDO::PARAM_STR);
             $cst->bindParam(":email", $this->email, PDO::PARAM_STR);
@@ -80,7 +80,7 @@ class Funcionario {
 
     public function queryUpdade($dados) {
         try {
-            $this->idFuncionario = $this->objfc->base64($dados['func'], 2);
+            $this->idFuncionario = $this->objFunc->base64($dados['func'], 2);
             $this->nome = $dados['nome'];
             $this->email = $dados['email'];
             $cst = $this->con->conectar()->prepare("UPDATE `funcionario` SET `nome` = :nome, `email` = :email WHERE `idFuncionario` = :idFunc;");
@@ -99,7 +99,7 @@ class Funcionario {
 
     public function queryDelete($dado) {
         try {
-            $this->idFuncionario = $this->objfc->base64($dado, 2);
+            $this->idFuncionario = $this->objFunc->base64($dado, 2);
             $cst = $this->con->conectar()->prepare("DELETE FROM `funcionario` WHERE `idFuncionario` = :idFunc;");
             $cst->bindParam(":idFunc", $this->idFuncionario, PDO::PARAM_INT);
             if ($cst->execute()) {

@@ -9,7 +9,7 @@ $objFc = new Funcoes();
 //CADASTRANDO O FUNCIONARIO
 if (isset($_POST['btCadastrar'])) {
     if ($objFunc->queryInsert($_POST) == 'ok') {
-        header('location: /paginas/cadastro');
+        header('location: ../cadastro/');
     } else {
         echo '<script type="text/javascript">alert("Erro em cadastrar");</script>';
     }
@@ -58,37 +58,13 @@ if (isset($_POST['btCadastrar'])) {
 
                     <form class="col s12" name="formCad" action="" method="post">
 
-                        <div class="row">
-                            <div class="input-field s6">
-                                <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                                <label for="first_name">First Name</label>
-                            </div>
-                            <div class="input-field s6">
-                                <input id="last_name" type="text" class="validate">
-                                <label for="last_name">Last Name</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field s12">
-                                <input disabled value="I am not editable" id="disabled" type="text" class="validate">
-                                <label for="disabled">Disabled</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field s12">
-                                <input id="password" type="password" class="validate">
-                                <label for="password">Password</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field s12">
-                                <input id="email" type="email" class="validate">
-                                <label for="email">Email</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">+</i></a>
-                        </div>    
+                        <input class="form-control" name="nome" type="text" required="required"  placeholder="Nome:" value="<?= $objFc->tratarCaracter((isset($func['nome'])) ? ($func['nome']) : (''), 2) ?>"><br>        
+                        <input type="email" name="email" class="form-control" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  placeholder="E-mail:" value="<?= $objFc->tratarCaracter((isset($func['email'])) ? ($func['email']) : (''), 2) ?>"><br>
+                        <?php if (isset($_GET['acao']) <> 'edit') { ?>
+                            <input type="password" name="senha" class="form-control" required="required" placeholder="Senha:"><br>
+                        <?php } ?>
+                        <button type="submit" name="<?= (isset($_GET['acao']) == 'edit') ? ('btAlterar') : ('btCadastrar') ?>" class="btn btn-primary btn-block"><?= (isset($_GET['acao']) == 'Editar') ? ('Alterar') : ('Cadastrar') ?></button>   
+                         <input type="hidden" name="func" value="<?=(isset($func['idFuncionario']))?($objFc->base64($func['idFuncionario'], 1)):('')?>">
                     </form>
 
                 </div>
