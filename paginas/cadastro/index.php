@@ -14,6 +14,31 @@ if (isset($_POST['btCadastrar'])) {
         echo '<script type="text/javascript">alert("Erro em cadastrar");</script>';
     }
 }
+
+//SELECIONADO O FUNCIONARIO
+if(isset($_GET['acao'])){
+	switch($_GET['acao']){
+		case 'edit': $func = $objFunc->querySeleciona($_GET['func']); break;
+		case 'delet': 
+			if($objFunc->queryDelete($_GET['func']) == 'ok'){
+				header('location: ../listar/');
+			}else{
+				echo '<script type="text/javascript">alert("Erro em deletar");</script>';
+			}
+				break;
+	}
+}
+
+//ALTERANDO OS DADOS DO FUNCIONARIO
+if(isset($_POST['btAlterar'])){
+	if($objFunc->queryUpdade($_POST) == 'ok'){
+		//header('location: ?acao=edit&func='.$_GET['func']);
+                header('location: ../listar/');
+	}else{
+		echo '<script type="text/javascript">alert("Erro em atualizar");</script>';
+	}
+}
+
 ?>
 <!DOCTYPE HTML>
 <html lang="pt-br">

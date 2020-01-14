@@ -6,7 +6,7 @@ require_once "../../classes/Funcoes.php";
 $objFunc = new Funcionario();
 $objFc = new Funcoes();
 
-//SELECIONADO O FUNCIONARIO
+//REDIRECIONA O FUNCIONARIO PARA EDITAR OU DELETAR
 if(isset($_GET['acao'])){
 	switch($_GET['acao']){
 		case 'edit': 
