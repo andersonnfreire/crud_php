@@ -1,3 +1,5 @@
+/* global M */
+
 function toggleResetPswd(e) {
     e.preventDefault();
     $('#logreg-forms .form-signin').toggle() // display:block or none
@@ -10,17 +12,14 @@ function toggleSignUp(e) {
     $('#logreg-forms .form-signup').toggle(); // display:block or none
 }
 
-$(() => {
-    // Login Register Form
-    $('#logreg-forms #forgot_pswd').click(toggleResetPswd);
-    $('#logreg-forms #cancel_reset').click(toggleResetPswd);
-    $('#logreg-forms #btn-signup').click(toggleSignUp);
-    $('#logreg-forms #cancel_signup').click(toggleSignUp);
-})
 
-$(document).ready(function () {
-    $(".dropdown-trigger").dropdown();
-    {
-        
-    }
+// Nav Bar
+const elemsDroppdow = document.querySelectorAll(".dropdown-trigger");
+const instancesDropdown = M.Dropdown.init(elemsDroppdow,
+{
+    coverTrigger:false
 });
+
+const elemsSidenav = document.querySelectorAll(".sidenav");
+const instancesSidenav = M.Sidenav.init(elemsSidenav);
+
