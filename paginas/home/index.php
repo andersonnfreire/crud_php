@@ -1,15 +1,31 @@
-<?php ?>
+<?php
+//BUSCANDO AS CLASSES
+require_once '../../classes/Funcionario.php';
+//ESTANCIANDO
+$objFunc = new Funcionario();
+//VALIDANDO USUARIO
+session_start();
+if ($_SESSION["logado"] == "sim") {
+    $objFunc->funcionarioLogado($_SESSION['func']);
+} else {
+    header ('location: http://localhost/sistemaPHP');
+}
+
+if (isset($_GET['sair']) == "sim") {
+    $objFunc->sairFuncionario();
+}
+?>
 <!DOCTYPE HTML>
 <html lang="pt-br">
     <head>
         <meta charset="utf-8">
         <title>Formulário de cadastro</title>
-         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
         <!-- Compiled and minified JavaScript -->
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
     </head>
@@ -38,6 +54,12 @@
                             <li><a href="../cadastro/">Cadastrar</a></li>
                             <li><a href="../listar/">Listar</a></li>
                         </ul>
+
+                        <ul class="right hide-on-med-and-down">
+                            <li><a href="#"><?= $_SESSION['nome'] ?> <i class="material-icons">account_circle</i></a></li>
+                            <li><a href="?sair=sim"> Sair <i class="material-icons">backspace</i></a></li>
+                        </ul>
+
                     </div>
 
                 </nav>
@@ -54,7 +76,7 @@
             <li><a href="../listar/">Listar</a></li>
         </ul>
 
-        
+
         <footer class="page-footer">
             <div class="container">
                 <div class="row">
@@ -80,9 +102,9 @@
                 </div>
             </div>
         </footer>
-       
+
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> 
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="../../js/teste.js"></script>
-     </body>
+    </body>
 </html>

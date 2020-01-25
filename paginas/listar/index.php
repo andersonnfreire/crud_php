@@ -22,6 +22,22 @@ if (isset($_GET['acao'])) {
             break;
     }
 }
+//BUSCANDO AS CLASSES
+require_once '../../classes/Funcionario.php';
+//ESTANCIANDO
+$objFunc = new Funcionario();
+//VALIDANDO USUARIO
+session_start();
+if ($_SESSION["logado"] == "sim") {
+    $objFunc->funcionarioLogado($_SESSION['func']);
+} else {
+    header ('location: http://localhost/sistemaPHP');
+}
+
+if (isset($_GET['sair']) == "sim") {
+    $objFunc->sairFuncionario();
+}
+
 ?>
 <!DOCTYPE HTML>
 <html lang="pt-br">
@@ -64,6 +80,10 @@ if (isset($_GET['acao'])) {
                         <ul id="dropdown1" class="dropdown-content nesteded">
                             <li><a href="../cadastro/">Cadastrar</a></li>
                             <li><a href="../listar/">Listar</a></li>
+                        </ul>
+                        <ul class="right hide-on-med-and-down">
+                            <li><a href="#"><?= $_SESSION['nome'] ?> <i class="material-icons">account_circle</i></a></li>
+                            <li><a href="?sair=sim"> Sair <i class="material-icons">backspace</i></a></li>
                         </ul>
                     </div>
 

@@ -8,10 +8,7 @@ $objFunc = new Funcionario();
 if(isset($_POST['btLogar'])){
 	$objFunc->logarFuncionario($_POST);
 }
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -31,31 +28,11 @@ if(isset($_POST['btLogar'])){
                 <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Iniciar Sessão</h1>
                 <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autofocus="">
                 <input type="password" name="senha" id="inputPassword" class="form-control" placeholder="Password" required="">
-
+                <hr>
                 <button class="btn btn-success btn-block" name="btLogar" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
 <!--                <a href="#" id="forgot_pswd">Forgot password?</a>-->
-                <hr>
-                <!-- <p>Don't have an account!</p>  -->
-                <button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up New Account</button>
-            </form>
+                
 
-            <form action="/reset/password/" class="form-reset">
-                <input type="email" id="resetEmail" class="form-control" placeholder="Email address" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autofocus="">
-                <button class="btn btn-primary btn-block" type="submit">Reset Password</button>
-                <a href="#" id="cancel_reset"><i class="fas fa-angle-left"></i> Back</a>
-            </form>
-
-            <form action="/signup/" class="form-signup">
-                <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Preencha os dados</h1>
-                <input type="text" id="user-name" class="form-control" placeholder="Full name" required="" autofocus="">
-                <input type="email" id="user-email" class="form-control" placeholder="Email address" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autofocus="">
-                <input type="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="">
-                <input type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required autofocus="">
-
-                <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
-                <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
-            </form>
-            
             <?php if(!empty($_GET['login']) == 'error') : ?>
             <div class="alert alert-danger" role="alert">
                 Ops! E-mail ou Senha estão errado!

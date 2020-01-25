@@ -133,5 +133,15 @@ class Funcionario {
             return 'Error: ' . $e->getMassage();
         }
     }
-
+    public function funcionarioLogado($dado){
+        $cst = $this->con->conectar()->prepare("SELECT `idFuncionario`, `nome`, `email` FROM `funcionario` WHERE `idFuncionario` = :idFunc;");
+        $cst->bindParam(':idFunc', $dado, PDO::PARAM_INT);
+        $cst->execute();
+        $rst = $cst->fetch();
+        $_SESSION['nome'] = $rst['nome'];
+    }
+    public function sairFuncionario(){
+		session_destroy();
+		header ('location: http://localhost/sistemaPHP');
+	}
 }
