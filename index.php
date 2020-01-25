@@ -1,4 +1,15 @@
-<?php ?>
+<?php 
+
+//BUSCANDO AS CLASSES
+require_once 'classes/Funcionario.php';
+//ESTANCIANDO A CLASSES
+$objFunc = new Funcionario();
+//FAZENDO O LOGIN
+if(isset($_POST['btLogar'])){
+	$objFunc->logarFuncionario($_POST);
+}
+
+?>
 
 
 <!DOCTYPE html>
@@ -16,13 +27,13 @@
     </head>
     <body>
         <div id="logreg-forms">
-            <form class="form-signin">
+            <form class="form-signin" action="" method="post">
                 <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Iniciar Sessão</h1>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autofocus="">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autofocus="">
+                <input type="password" name="senha" id="inputPassword" class="form-control" placeholder="Password" required="">
 
                 <button class="btn btn-success btn-block" name="btLogar" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
-                <a href="#" id="forgot_pswd">Forgot password?</a>
+<!--                <a href="#" id="forgot_pswd">Forgot password?</a>-->
                 <hr>
                 <!-- <p>Don't have an account!</p>  -->
                 <button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up New Account</button>
@@ -44,6 +55,12 @@
                 <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
                 <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
             </form>
+            
+            <?php if(!empty($_GET['login']) == 'error') : ?>
+            <div class="alert alert-danger" role="alert">
+                Ops! E-mail ou Senha estão errado!
+            </div>
+            <?php endif; ?>
         </div>
     </body>
 </html>
